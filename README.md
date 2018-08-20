@@ -1,5 +1,8 @@
 # OSS PaaS and DevOps workshop
 
+
+
+
 This repository contains resources for use with the OSS PaaS and DevOps workshop, including the starter MERN app, code for Azure Functions, scripts for seeding data into the MongoDB database, as well as exporting data, and an ARM template for deploying the Lab virtual machine (VM) to Azure.
 
 ## LabVM
