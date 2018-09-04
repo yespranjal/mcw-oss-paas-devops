@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "servers_mcw_oss_hol_pgdb_createMode": {
+            "value": "Default"
+        },
+        "servers_mcw_oss_hol_pgdb_name": {
+            "value": "mcw-oss-hol-pgdb-arm"
+        },
+        "serverfarms_FreePlan_name": {
+            "value": "FreePlan-arm"
+        },
+        "sites_javapetstoreapp_sriks_name": {
+            "value": "javapetstoreapp-sriks-arm"
+        },
+        "hostNameBindings_javapetstoreapp_sriks.azurewebsites.net_name": {
+            "value": "javapetstoreapp-sriks-arm.azurewebsites.net"
+        },
+        "administratorLogin":{
+            "value": "holadmin"
+        },
+        "administratorPassword":{
+            "value": "Password@123"
+        }
+    }
+}

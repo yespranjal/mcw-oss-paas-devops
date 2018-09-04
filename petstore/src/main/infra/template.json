@@ -1,0 +1,165 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "administratorLogin":{
+            "type": "String"
+        },
+        "administratorPassword":{
+            "type": "SecureString"
+        },
+        "servers_mcw_oss_hol_pgdb_createMode": {
+            "type": "SecureString"
+        },
+        "servers_mcw_oss_hol_pgdb_name": {
+            "type": "String"
+        },
+        "serverfarms_FreePlan_name": {
+            "type": "String"
+        },
+        "sites_javapetstoreapp_sriks_name": {
+            "type": "String"
+        },
+        "hostNameBindings_javapetstoreapp_sriks.azurewebsites.net_name": {
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/11d800e3-f736-4aa2-8748-8b7971d5ce75/resourceGroups/javapetstoreapp-sriks/providers/Microsoft.Web/serverfarms/FreePlan'.",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "B1",
+                "tier": "Basic",
+                "size": "B1",
+                "family": "B",
+                "capacity": 1
+            },
+            "kind": "linux",
+            "name": "[parameters('serverfarms_FreePlan_name')]",
+            "apiVersion": "2016-09-01",
+            "location": "Southeast Asia",
+            "scale": null,
+            "properties": {
+                "name": "[parameters('serverfarms_FreePlan_name')]",
+                "workerTierName": null,
+                "adminSiteName": null,
+                "hostingEnvironmentProfile": null,
+                "perSiteScaling": false,
+                "reserved": true,
+                "targetWorkerCount": 0,
+                "targetWorkerSizeId": 0
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/11d800e3-f736-4aa2-8748-8b7971d5ce75/resourceGroups/javapetstoreapp-sriks/providers/Microsoft.Web/sites/javapetstoreapp-sriks'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "app,linux,container",
+            "name": "[parameters('sites_javapetstoreapp_sriks_name')]",
+            "apiVersion": "2016-08-01",
+            "location": "Southeast Asia",
+            "scale": null,
+            "properties": {
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_javapetstoreapp_sriks_name'),'.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Standard"
+                    },
+                    {
+                        "name": "[concat(parameters('sites_javapetstoreapp_sriks_name'),'.scm.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "virtualIP": null,
+                        "thumbprint": null,
+                        "toUpdate": null,
+                        "hostType": "Repository"
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_FreePlan_name'))]",
+                "reserved": true,
+                "siteConfig": {
+                    "alwaysOn": true,
+                    "appSettings": [
+                        {
+                            "name": "POSTGRES_CONNECTIONURL",
+                            "value": "jdbc:postgresql://mcw-oss-hol-pgdb.postgres.database.azure.com:5432/postgres?ssl=true"
+                        },
+                        {
+                            "name": "POSTGRES_PASSWORD",
+                            "value": "Password@123"
+                        },
+                        {
+                            "name": "POSTGRES_USERNAME",
+                            "value": "holadmin@mcw-oss-hol-pgdb"
+                        },
+                        {
+                            "name": "WEBSITE_HTTPLOGGING_RETENTION_DAYS",
+                            "value": "1"
+                        }
+                    ],
+                    "linuxFxVersion": "DOCKER|sreeadockerid/wildflyconfigexploded:latest"
+                },
+                "scmSiteAlsoStopped": false,
+                "hostingEnvironmentProfile": null,
+                "clientAffinityEnabled": true,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 0,
+                "dailyMemoryTimeQuota": 0,
+                "cloningInfo": null
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_FreePlan_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/11d800e3-f736-4aa2-8748-8b7971d5ce75/resourceGroups/javapetstoreapp-sriks/providers/Microsoft.Web/sites/javapetstoreapp-sriks/hostNameBindings/javapetstoreapp-sriks.azurewebsites.net'.",
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "name": "[concat(parameters('sites_javapetstoreapp_sriks_name'), '/', parameters('hostNameBindings_javapetstoreapp_sriks.azurewebsites.net_name'))]",
+            "apiVersion": "2016-08-01",
+            "location": "Southeast Asia",
+            "scale": null,
+            "properties": {
+                "siteName": "javapetstoreapp-sriks",
+                "domainId": null,
+                "hostNameType": "Verified"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_javapetstoreapp_sriks_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/11d800e3-f736-4aa2-8748-8b7971d5ce75/resourceGroups/sriks-oss-handson/providers/Microsoft.DBforPostgreSQL/servers/mcw-oss-hol-pgdb'.",
+            "type": "Microsoft.DBforPostgreSQL/servers",
+            "sku": {
+                "name": "B_Gen4_1",
+                "tier": "Basic",
+                "family": "Gen4",
+                "capacity": 1
+            },
+            "name": "[parameters('servers_mcw_oss_hol_pgdb_name')]",
+            "apiVersion": "2017-12-01-preview",
+            "location": "southeastasia",
+            "scale": null,
+            "properties": {
+                "administratorLogin": "[parameters('administratorLogin')]",
+                "administratorLoginPassword": "[parameters('administratorPassword')]",
+                "storageProfile": {
+                    "storageMB": 5120,
+                    "backupRetentionDays": 7,
+                    "geoRedundantBackup": "Disabled"
+                },
+                "version": "10",
+                "sslEnforcement": "Disabled",
+                "createMode": "[parameters('servers_mcw_oss_hol_pgdb_createMode')]"
+            },
+            "dependsOn": []
+        }
+    ]
+}
