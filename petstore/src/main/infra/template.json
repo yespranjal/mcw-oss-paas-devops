@@ -17,7 +17,7 @@
         "serverfarms_FreePlan_name": {
             "type": "String"
         },
-        "sites_javapetstoreapp__name": {
+        "sites_javapetstoreapp_name": {
             "type": "String"
         },
         "hostNameBindings_javapetstoreapp.azurewebsites.net_name": {
