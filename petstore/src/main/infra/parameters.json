@@ -6,16 +6,16 @@
             "value": "Default"
         },
         "servers_mcw_oss_hol_pgdb_name": {
-            "value": "mcw-oss-hol-pgdb-arm"
+            "value": "petstore-pgdb-001"
         },
         "serverfarms_FreePlan_name": {
-            "value": "FreePlan-arm"
+            "value": "freeplan-001"
         },
-        "sites_javapetstoreapp_sriks_name": {
-            "value": "javapetstoreapp-sriks-arm"
+        "sites_javapetstoreapp_name": {
+            "value": "petstore-web-001"
         },
-        "hostNameBindings_javapetstoreapp_sriks.azurewebsites.net_name": {
-            "value": "javapetstoreapp-sriks-arm.azurewebsites.net"
+        "hostNameBindings_javapetstoreapp.azurewebsites.net_name": {
+            "value": "petstore-web-001.azurewebsites.net"
         },
         "administratorLogin":{
             "value": "holadmin"
