@@ -103,7 +103,7 @@
                             "value": "1"
                         }
                     ],
-                    "linuxFxVersion": "DOCKER|sreeadockerid/wildflyconfigexploded:latest"
+                    "linuxFxVersion": "DOCKER|yespranjal/docker78053714:latest"
                 },
                 "scmSiteAlsoStopped": false,
                 "hostingEnvironmentProfile": null,
